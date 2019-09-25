@@ -1,5 +1,7 @@
 package kata.ex01.model;
 
+import kata.ex01.util.HolidayUtils;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -59,5 +61,17 @@ public class HighwayDrive implements Serializable {
 
     public String toString() {
         return "HighwayDrive(enteredAt=" + this.getEnteredAt() + ", exitedAt=" + this.getExitedAt() + ", vehicleFamily=" + this.getVehicleFamily() + ", routeType=" + this.getRouteType() + ", driver=" + this.getDriver() + ")";
+    }
+
+    public boolean enteredAtHoliday() {
+        return HolidayUtils.isHoliday(enteredAt.toLocalDate());
+    }
+
+    public boolean exitedAtHoliday() {
+        return HolidayUtils.isHoliday(exitedAt.toLocalDate());
+    }
+
+    public boolean isSameDateDrive() {
+        return enteredAt.toLocalDate().equals(exitedAt.toLocalDate());
     }
 }
